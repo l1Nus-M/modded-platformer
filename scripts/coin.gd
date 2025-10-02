@@ -37,4 +37,5 @@ func _ready():
 
 func _on_body_entered(_body):
 	Global.collect_coin()
+	Global.coin_sound()
 	queue_free()

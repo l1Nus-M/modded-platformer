@@ -54,6 +54,10 @@ const _PLAYER_ACTIONS = {
 ## Can your character jump a second time while still in the air?
 @export var double_jump: bool = false
 
+## Character Jump Sound
+@onready var jump_sound = $JumpSound
+
+
 # If positive, the player is either on the ground, or left the ground less than this long ago
 var coyote_timer: float = 0
 
@@ -108,6 +112,7 @@ func _on_gravity_changed(new_gravity):
 
 func _jump():
 	velocity.y = jump_velocity
+	jump_sound.play()
 	coyote_timer = 0
 	jump_buffer_timer = 0
 	if double_jump_armed:

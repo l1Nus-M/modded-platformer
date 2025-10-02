@@ -26,6 +26,8 @@ var coins: int = 0
 var lives: int = 0:
 	set = _set_lives
 
+## Coin Sound variable
+var coinSound:= AudioStreamPlayer.new()
 
 func collect_coin():
 	coins += 1
@@ -63,7 +65,14 @@ func _ready():
 	# Connect signals to handle game events.
 	game_ended.connect(_on_game_ended)
 	game_started.connect(_on_game_start)
+	add_child(coinSound)
 
+## Coins sound function
+func coin_sound():
+	coinSound.stream = preload("res://assets/SoundEffects/coin.wav")
+	coinSound.volume_db = -20
+	coinSound.play()
+	
 
 func _on_game_ended(_ending: Endings):
 	# Pause the timer if it is running.
